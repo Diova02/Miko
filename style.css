@@ -68,6 +68,10 @@ body {
     cursor: pointer;
 }
 
+.general-header {
+   /* inserir aqui propriedades que façam com que o header + nav fiquem sempre no topo independente do scroll */
+}
+
 /* =========================================
    4. NAVEGAÇÃO E ABAS
    ========================================= */
@@ -503,4 +507,115 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* --- Dashboard Grid (Visualização em 4 quadrantes) --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px; /* Espaço um pouco menor para caber bem no celular */
+    height: 60%;
+}
+
+/* --- Dashboard Card (Age como um botão) --- */
+.dashboard-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+    border: 1px solid transparent;
+}
+
+/* Feedback visual de clique */
+.dashboard-card:active {
+    transform: scale(0.96);
+    background-color: var(--bg-elevated);
+    border-color: var(--accent-orange);
+}
+
+.card-title {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* Dica visual ("Toque para editar") */
+.click-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.5;
+    margin-top: auto; /* Empurra pra baixo */
+    text-align: center;
+    padding-top: 12px;
+}
+
+/* --- Layouts Internos dos Cards --- */
+.profile-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.avatar-large {
+    width: 64px;
+    height: 64px;
+    background-color: var(--bg-elevated);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-main);
+    border: 3px solid; /* Borda grossa pra destacar a cor */
+}
+
+/* Bordas dinâmicas do Avatar */
+.border-red { border-color: var(--tag-red); }
+.border-green { border-color: var(--tag-green); }
+.border-orange { border-color: var(--accent-orange); }
+
+.profile-name {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tags-preview {
+    display: flex;
+    flex-direction: column; /* Empilha os alertas */
+    gap: 6px;
+    flex: 1;
+}
+
+/* --- Listas de Status (EQ e Comp) --- */
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.stat-val {
+    color: var(--accent-orange);
+    font-size: 15px;
+    background-color: var(--bg-elevated);
+    padding: 2px 6px;
+    border-radius: 6px;
 }

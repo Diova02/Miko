@@ -9,17 +9,19 @@
 </head>
 <body>
     <div class="app-container">
-        <header class="top-bar">
-            <button class="icon-btn" id="btn-profile"><i class="fas fa-user-circle"></i></button>
-            <h1 class="env-title" id="btn-env">Igreja Central</h1>
-            <button class="icon-btn" id="btn-settings"><i class="fas fa-cog"></i></button>
-        </header>
+        <div class="general-header">
+            <header class="top-bar">
+                <button class="icon-btn" id="btn-profile"><i class="fas fa-user-circle"></i></button>
+                <h1 class="env-title" id="btn-env">Igreja Central</h1>
+                <button class="icon-btn" id="btn-settings"><i class="fas fa-cog"></i></button>
+            </header>
 
-        <nav class="tab-selector" id="main-tabs">
-            <button class="tab active"><i class="fas fa-microphone"></i></button>
-            <button class="tab"><i class="fas fa-music"></i></button>
-            <button class="tab"><i class="fas fa-guitar"></i></button>
-        </nav>
+            <nav class="tab-selector" id="main-tabs">
+                <button class="tab active"><i class="fas fa-microphone"></i></button>
+                <button class="tab"><i class="fas fa-music"></i></button>
+                <button class="tab"><i class="fas fa-guitar"></i></button>
+            </nav>
+        </div>
 
         <main class="tab-content" id="main-content">
             
@@ -107,57 +109,136 @@
 
         <!-- ===================== -->
         <!-- PÁGINA DO PALESTRANTE -->
+        <!-- ===================== -->
 
         <div class="detail-view" id="view-speaker-detail">
-            <header class="top-bar">
-                <button class="icon-btn" id="btn-back-grid"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="env-title" id="detail-title">Nome do Palestrante</h1>
-                <div style="width: 24px;"></div> </header>
-                <div class="detail-content">
+            <header class="detail-header">
+                <button class="icon-btn" id="btn-back-grid">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>
+                </button>
+                <h1 class="env-title" id="detail-title">João Silva</h1>
+                <div style="width: 24px;"></div> 
+            </header>
 
-                    <div class="config-section">
-                        <h3 class="section-title">Equalizador (EQ)</h3>
-                        
-                        <div class="eq-board">
-                            <div class="fader-group">
-                                <span class="fader-label">Agudos</span>
-                                <div class="fader-wrapper">
-                                    <input type="range" class="center-slider" min="-12" max="12" value="4" step="1">
-                                </div>
-                                <span class="fader-value">+4</span>
-                            </div>
-
-                            <div class="fader-group">
-                                <span class="fader-label">Médios</span>
-                                <div class="fader-wrapper">
-                                    <input type="range" class="center-slider" min="-12" max="12" value="-3" step="1">
-                                </div>
-                                <span class="fader-value">-3</span>
-                            </div>
-
-                            <div class="fader-group">
-                                <span class="fader-label">Graves</span>
-                                <div class="fader-wrapper">
-                                    <input type="range" class="center-slider" min="-12" max="12" value="0" step="1">
-                                </div>
-                                <span class="fader-value">0</span>
-                            </div>
+            <div class="detail-content">
+                <div class="dashboard-grid">
+                    
+                    <div class="dashboard-card" id="card-profile" role="button" tabindex="0">
+                        <h3 class="card-title">Perfil</h3>
+                        <div class="profile-display">
+                            <div class="avatar-large border-red">JS</div> 
+                            <span class="profile-name">João Silva</span>
+                            <span class="click-hint">Toque para editar</span>
                         </div>
-                    </div>             
+                    </div>
 
-                    <div class="config-section">
-                        <h3 class="section-title">Atenção</h3>
-                        <div class="tags-container">
+                    <div class="dashboard-card" id="card-alerts" role="button" tabindex="0">
+                        <h3 class="card-title">Atenção</h3>
+                        <div class="tags-preview">
                             <span class="alert-tag tag-red">Grita Muito</span>
-                            <span class="alert-tag tag-orange">Sibila (S forte)</span>
-                            <button class="btn-add-tag"><i class="fas fa-plus"></i></button>
+                            <span class="alert-tag tag-orange">Sibila forte</span>
                         </div>
+                        <span class="click-hint">Toque para editar</span>
+                    </div>
+
+                    <div class="dashboard-card" id="card-eq" role="button" tabindex="0">
+                        <h3 class="card-title">Equalizador</h3>
+                        <div class="stats-list">
+                            <div class="stat-row"><span>Agudo</span><strong class="stat-val" id="display-val-agudo">+4</strong></div>
+                            <div class="stat-row"><span>Médio</span><strong class="stat-val" id="display-val-medio">-3</strong></div>
+                            <div class="stat-row"><span>Grave</span><strong class="stat-val" id="display-val-grave">0</strong></div>
+                        </div>
+                        <span class="click-hint">Toque para faders</span>
+                    </div>
+
+                    <div class="dashboard-card" id="card-comp" role="button" tabindex="0">
+                        <h3 class="card-title">Compressor</h3>
+                        <div class="stats-list">
+                            <div class="stat-row"><span>Thresh</span><strong class="stat-val" id="display-val-thresh">-18db</strong></div>
+                            <div class="stat-row"><span>Ratio</span><strong class="stat-val" id="display-val-ratio">3:1</strong></div>
+                            <div class="stat-row"><span>Atk</span><strong class="stat-val" id="display-val-atk">10ms</strong></div>
+                            <div class="stat-row"><span>Rel</span><strong class="stat-val" id="display-val-rel">100ms</strong></div>
+                        </div>
+                        <span class="click-hint">Toque para editar</span>
                     </div>
 
                 </div>
             </div>
         </div>
+
         <!-- ===================== -->
+        <!-- MODAIS DO PALESTRANTE -->
+        <!-- ===================== -->
+
+        <div class="overlay" id="main-overlay"></div>
+
+        <div class="modal" id="modal-profile">
+            <div class="modal-header">
+                <h3 class="env-title">Editar Perfil</h3>
+                <button class="icon-btn btn-close" data-close="modal-profile"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <div class="placeholder-box">Aqui você editará a imagem, nome e cor da tag do palestrante.</div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-alerts">
+            <div class="modal-header">
+                <h3 class="env-title">Gerenciar Alertas</h3>
+                <button class="icon-btn btn-close" data-close="modal-alerts"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <div class="placeholder-box">Aqui você adicionará ou removerá as tags de atenção (ex: "Grita Muito").</div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-eq">
+            <div class="modal-header">
+                <h3 class="env-title">Ajustar EQ</h3>
+                <button class="icon-btn btn-close" data-close="modal-eq">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">Deslize os faders para editar.</p>
+                <div class="eq-board">
+                    <div class="fader-group">
+                        <span class="fader-label">Agudos</span>
+                        <div class="fader-wrapper">
+                            <input type="range" class="center-slider" min="-12" max="12" value="4" step="1" data-sync="display-val-agudo">
+                        </div>
+                        <span class="fader-value">+4</span>
+                    </div>
+
+                    <div class="fader-group">
+                        <span class="fader-label">Médios</span>
+                        <div class="fader-wrapper">
+                            <input type="range" class="center-slider" min="-12" max="12" value="-3" step="1" data-sync="display-val-medio">
+                        </div>
+                        <span class="fader-value">-3</span>
+                    </div>
+
+                    <div class="fader-group">
+                        <span class="fader-label">Graves</span>
+                        <div class="fader-wrapper">
+                            <input type="range" class="center-slider" min="-12" max="12" value="0" step="1" data-sync="display-val-grave">
+                        </div>
+                        <span class="fader-value">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-comp">
+            <div class="modal-header">
+                <h3 class="env-title">Compressor</h3>
+                <button class="icon-btn btn-close" data-close="modal-comp"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <div class="placeholder-box">Aqui você configurará os parâmetros (Attack, Release, Threshold e Ratio).</div>
+            </div>
+        </div>
+        <!--======================-->
 
         <script src="app.js"></script>
     </div>
