@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MIKO - Protótipo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="top-bar">
+            <button class="icon-btn" id="btn-profile"><i class="fas fa-user-circle"></i></button>
+            <h1 class="env-title" id="btn-env">Igreja Central</h1>
+            <button class="icon-btn" id="btn-settings"><i class="fas fa-cog"></i></button>
+        </header>
+
+        <nav class="tab-selector" id="main-tabs">
+            <button class="tab active"><i class="fas fa-microphone"></i></button>
+            <button class="tab"><i class="fas fa-music"></i></button>
+            <button class="tab"><i class="fas fa-guitar"></i></button>
+        </nav>
+
+        <main class="tab-content" id="main-content">
+            
+            <div class="tab-pane active" id="tab-speakers">
+                <div class="actions-bar">
+                    <button class="btn-filter" id="btn-filter">
+                        <i class="fas fa-filter"></i> Filtros
+                    </button>
+                    <button class="btn-add" id="btn-add"><i class="fas fa-plus"></i> Adicionar</button>
+                </div>
+
+                <div class="speaker-grid">
+                    <div class="speaker-card">
+                        <div class="color-tag tag-red"></div>
+                        <div class="avatar"><i class="fas fa-user"></i></div>
+                        <span class="name">Pr. João</span>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="color-tag tag-green"></div>
+                        <div class="avatar"><i class="fas fa-user"></i></div>
+                        <span class="name">Maria (Vocal)</span>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="color-tag tag-orange"></div>
+                        <div class="avatar"><i class="fas fa-user"></i></div>
+                        <span class="name">Lucas (Avisos)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="tab-instruments">
+                <div class="placeholder-box">PLAYBACKS em breve...</div>
+            </div>
+
+            <div class="tab-pane" id="tab-mix">
+                <div class="placeholder-box">INSTRUMENTOS em breve...</div>
+            </div>
+        </main>
+
+        <div class="overlay" id="ui-overlay"></div>
+
+        <aside class="side-panel panel-left" id="panel-profile">
+            <div class="panel-header">
+                <h2>Meu Perfil</h2>
+                <button class="icon-btn btn-close" data-close="panel-profile"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="panel-content">
+                <p style="color: var(--text-muted)">Opções de perfil entrarão aqui.</p>
+            </div>
+        </aside>
+
+        <aside class="side-panel panel-right" id="panel-settings">
+            <div class="panel-header">
+                <h2>Configurações</h2>
+                <button class="icon-btn btn-close" data-close="panel-settings"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="panel-content">
+                <p style="color: var(--text-muted)">Ajustes do app entrarão aqui.</p>
+            </div>
+        </aside>
+
+        <div class="modal" id="modal-env">
+            <div class="modal-header">
+                <h2>Selecionar Ambiente</h2>
+                <button class="icon-btn btn-close" data-close="modal-env"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <p style="color: var(--text-muted)">Igreja Central, Acampamento, etc.</p>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-filter">
+            <div class="modal-header">
+                <h2>Filtrar por Etiqueta</h2>
+                <button class="icon-btn btn-close" data-close="modal-filter"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <div style="display: flex; gap: 12px; justify-content: center; padding: 20px 0;">
+                    <button class="color-tag tag-red" style="width: 40px; height: 40px; border: none; cursor:pointer;"></button>
+                    <button class="color-tag tag-green" style="width: 40px; height: 40px; border: none; cursor:pointer;"></button>
+                    <button class="color-tag tag-orange" style="width: 40px; height: 40px; border: none; cursor:pointer;"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== -->
+        <!-- PÁGINA DO PALESTRANTE -->
+
+        <div class="detail-view" id="view-speaker-detail">
+            <header class="top-bar">
+                <button class="icon-btn" id="btn-back-grid"><i class="fas fa-arrow-left"></i></button>
+                <h1 class="env-title" id="detail-title">Nome do Palestrante</h1>
+                <div style="width: 24px;"></div> </header>
+                <div class="detail-content">
+
+                    <div class="config-section">
+                        <h3 class="section-title">Equalizador (EQ)</h3>
+                        
+                        <div class="eq-board">
+                            <div class="fader-group">
+                                <span class="fader-label">Agudos</span>
+                                <div class="fader-wrapper">
+                                    <input type="range" class="center-slider" min="-12" max="12" value="4" step="1">
+                                </div>
+                                <span class="fader-value">+4</span>
+                            </div>
+
+                            <div class="fader-group">
+                                <span class="fader-label">Médios</span>
+                                <div class="fader-wrapper">
+                                    <input type="range" class="center-slider" min="-12" max="12" value="-3" step="1">
+                                </div>
+                                <span class="fader-value">-3</span>
+                            </div>
+
+                            <div class="fader-group">
+                                <span class="fader-label">Graves</span>
+                                <div class="fader-wrapper">
+                                    <input type="range" class="center-slider" min="-12" max="12" value="0" step="1">
+                                </div>
+                                <span class="fader-value">0</span>
+                            </div>
+                        </div>
+                    </div>             
+
+                    <div class="config-section">
+                        <h3 class="section-title">Atenção</h3>
+                        <div class="tags-container">
+                            <span class="alert-tag tag-red">Grita Muito</span>
+                            <span class="alert-tag tag-orange">Sibila (S forte)</span>
+                            <button class="btn-add-tag"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ===================== -->
+
+        <script src="app.js"></script>
+    </div>
+</body>
+</html>
