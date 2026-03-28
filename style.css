@@ -316,6 +316,7 @@ body {
     padding: 16px;
     flex: 1;
     overflow-y: auto;
+    background-color: var(--bg-dark);
 }
 
 /* =========================================
@@ -416,7 +417,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 0;
+    padding: 14px 0;
 }
 
 .fader-group {
@@ -431,21 +432,27 @@ body {
     font-weight: 500;
 }
 
+/* Valor numérico blindado contra "pulos" de largura */
 .fader-value {
     font-size: 16px;
     font-weight: bold;
     color: var(--accent-orange);
     background-color: var(--bg-elevated);
-    padding: 4px 12px;
+    padding: 6px 0; /* Padding lateral zerado para focar no width fixo */
     border-radius: 8px;
-    min-width: 48px;
+    width: 60px; /* Largura cravada que cabe até um "-12" folgado */
     text-align: center;
+    font-variant-numeric: tabular-nums; /* Mágica: todos os números ocupam os mesmos pixels */
+    display: inline-block;
+    margin-top: 4px;
 }
 
 .fader-wrapper {
     position: relative;
-    width: 40px;
-    height: 180px;
+    /* Essa é a "caixa" real na tela */
+    width: 40px;   /* Largura do espaço do fader (se a bolinha tiver 30px, 40px é ótimo) */
+    height: 220px; /* A altura visual que você quer que o fader tenha */
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -454,12 +461,22 @@ body {
 .center-slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 180px; 
-    height: 100%;
+    
+    /* A inversão mágica: O width do slider tem que ser o height do wrapper */
+    width: 220px;  
+    /* O height do slider é a área de "toque" do dedo, igual ao width do wrapper */
+    height: 40px;  
+    
     background: transparent;
     outline: none;
-    transform: rotate(-90deg);
     cursor: pointer;
+    
+    /* O SEGREDO: Tira do fluxo normal para o hitbox não vazar por cima dos outros faders */
+    position: absolute; 
+    
+    transform: rotate(-90deg);
+    transform-origin: center center;
+    margin: 0; /* Zera qualquer margem fantasma */
     
     --fill-min: 50%;
     --fill-max: 50%;
@@ -467,7 +484,7 @@ body {
 
 .center-slider::-webkit-slider-runnable-track {
     width: 100%;
-    height: 8px;
+    height: 10px;
     border-radius: 4px;
     background: linear-gradient(to right,
         var(--bg-elevated) 0%,
@@ -488,13 +505,38 @@ body {
     border-radius: 50%;
     background-color: #fff;
     border: 2px solid var(--accent-orange);
-    margin-top: -8px; 
+    margin-top: -7px; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     transition: transform 0.1s;
 }
 
 .center-slider::-webkit-slider-thumb:active {
     transform: scale(1.2);
+}
+
+/* Bloqueia a rolagem lateral no modal de EQ especificamente */
+.eq-modal-content {
+    overflow-x: hidden;
+}
+
+/* Botões de + e - dos faders */
+.fader-btn {
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    background-color: var(--bg-elevated);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    transition: all 0.1s ease;
+}
+
+.fader-btn:active {
+    background-color: var(--accent-orange);
+    color: #111;
+    transform: scale(0.9);
 }
 
 /* =========================================

@@ -6,6 +6,7 @@
     <title>MIKO - Protótipo</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/miko_whiteborder.png" type="image/png">
 </head>
 <body>
     <div class="app-container">
@@ -170,8 +171,9 @@
         <!-- MODAIS DO PALESTRANTE -->
         <!-- ===================== -->
 
-        <div class="overlay" id="main-overlay"></div>
+        <div class="overlay" id="main-overlay"></div> 
 
+        <!--FOTO e TAG-->
         <div class="modal" id="modal-profile">
             <div class="modal-header">
                 <h3 class="env-title">Editar Perfil</h3>
@@ -182,6 +184,7 @@
             </div>
         </div>
 
+        <!--AVISOS INTERNOS-->
         <div class="modal" id="modal-alerts">
             <div class="modal-header">
                 <h3 class="env-title">Gerenciar Alertas</h3>
@@ -192,6 +195,7 @@
             </div>
         </div>
 
+        <!--EQUALIZAÇÃO-->
         <div class="modal" id="modal-eq">
             <div class="modal-header">
                 <h3 class="env-title">Ajustar EQ</h3>
@@ -199,36 +203,45 @@
                     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"></path></svg>
                 </button>
             </div>
-            <div class="modal-content">
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">Deslize os faders para editar.</p>
+            <div class="modal-content eq-modal-content">
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">Ajuste fino ou deslize.</p>
+                
                 <div class="eq-board">
+                    
                     <div class="fader-group">
                         <span class="fader-label">Agudos</span>
+                        <button class="icon-btn fader-btn" data-action="plus"><i class="fas fa-plus"></i></button>
                         <div class="fader-wrapper">
                             <input type="range" class="center-slider" min="-12" max="12" value="4" step="1" data-sync="display-val-agudo">
                         </div>
+                        <button class="icon-btn fader-btn" data-action="minus"><i class="fas fa-minus"></i></button>
                         <span class="fader-value">+4</span>
                     </div>
 
                     <div class="fader-group">
                         <span class="fader-label">Médios</span>
+                        <button class="icon-btn fader-btn" data-action="plus"><i class="fas fa-plus"></i></button>
                         <div class="fader-wrapper">
                             <input type="range" class="center-slider" min="-12" max="12" value="-3" step="1" data-sync="display-val-medio">
                         </div>
+                        <button class="icon-btn fader-btn" data-action="minus"><i class="fas fa-minus"></i></button>
                         <span class="fader-value">-3</span>
                     </div>
 
                     <div class="fader-group">
                         <span class="fader-label">Graves</span>
+                        <button class="icon-btn fader-btn" data-action="plus"><i class="fas fa-plus"></i></button>
                         <div class="fader-wrapper">
                             <input type="range" class="center-slider" min="-12" max="12" value="0" step="1" data-sync="display-val-grave">
                         </div>
+                        <button class="icon-btn fader-btn" data-action="minus"><i class="fas fa-minus"></i></button>
                         <span class="fader-value">0</span>
                     </div>
+
                 </div>
             </div>
         </div>
-
+        <!--COMPRESSOR-->
         <div class="modal" id="modal-comp">
             <div class="modal-header">
                 <h3 class="env-title">Compressor</h3>

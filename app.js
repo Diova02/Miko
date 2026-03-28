@@ -187,4 +187,36 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboardCards.comp.addEventListener('click', () => openUIElement(editModals.comp));
     }
 
+    // ==========================================
+    // 10. BOTÕES DE PRECISÃO (+ E -) DO EQ
+    // ==========================================
+    const precisionButtons = document.querySelectorAll('.fader-btn');
+    
+    precisionButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Acha qual fader pertence a este botão
+            const faderGroup = btn.closest('.fader-group');
+            const slider = faderGroup.querySelector('.center-slider');
+            
+            if (!slider) return;
+
+            let currentValue = parseFloat(slider.value);
+            const step = parseFloat(slider.step) || 1;
+            const max = parseFloat(slider.max);
+            const min = parseFloat(slider.min);
+            
+            const action = btn.getAttribute('data-action'); // Lê se é 'plus' ou 'minus'
+            
+            // Faz a conta respeitando o limite do fader
+            if (action === 'plus' && currentValue < max) {
+                slider.value = currentValue + step;
+            } else if (action === 'minus' && currentValue > min) {
+                slider.value = currentValue - step;
+            }
+
+            // O pulo do gato: Dispara o evento 'input' manualmente. 
+            // Isso faz a Seção 8 entrar em ação, atualizando as cores, o número do modal e o número da dashboard lá atrás de uma vez só!
+            slider.dispatchEvent(new Event('input'));
+        });
+    });
 });
