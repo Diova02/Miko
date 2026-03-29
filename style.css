@@ -661,3 +661,12 @@ body {
     padding: 2px 6px;
     border-radius: 6px;
 }
+
+/* =========================================
+   11. TRAVA DE ROLAGEM (ANTI-SCROLL CHAINING)
+   ========================================= */
+body.modal-open .tab-pane,
+body.modal-open .detail-content {
+    overflow: hidden !important;
+    touch-action: none;
+}

@@ -49,14 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!element) return;
         overlay.classList.add('active');
         element.classList.add('active');
+        // Trava a rolagem do fundo
+        document.body.classList.add('modal-open'); 
     };
 
     const closeAllUIElements = () => {
         overlay.classList.remove('active');
-        // Método escalável: acha qualquer painel ou modal aberto e fecha
         document.querySelectorAll('.side-panel.active, .modal.active').forEach(el => {
             el.classList.remove('active');
         });
+        // Destrava a rolagem do fundo
+        document.body.classList.remove('modal-open'); 
     };
 
     // ==========================================
@@ -67,23 +70,30 @@ document.addEventListener('DOMContentLoaded', () => {
     btnEnv.addEventListener('click', () => openUIElement(modalEnv));
     btnFilter.addEventListener('click', () => openUIElement(modalFilter));
     
-    // Clicar fora (no fundo escuro) fecha tudo que estiver sobreposto
+    // Clicar fora (no overlay) fecha tudo
     overlay.addEventListener('click', closeAllUIElements);
 
+    // Botões de fechar (X)
     closeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Requer que o HTML do botão tenha data-close="id-do-modal"
             const targetId = btn.getAttribute('data-close'); 
-            if(targetId) {
+            if (targetId) {
                 document.getElementById(targetId).classList.remove('active');
             } else {
-                // Fallback caso não tenha o atributo: fecha quem é o pai dele
                 btn.closest('.modal, .side-panel').classList.remove('active');
             }
-            overlay.classList.remove('active');
+            
+            // Verifica se ainda sobrou algum modal/painel aberto na tela
+            const anyOpen = document.querySelectorAll('.modal.active, .side-panel.active').length > 0;
+            
+            // Se nenhum modal estiver aberto, remove o overlay e libera o scroll
+            if (!anyOpen) {
+                overlay.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
         });
     });
-
+    
     // ==========================================
     // 4. LÓGICA DE TROCA DE ABAS
     // ==========================================
