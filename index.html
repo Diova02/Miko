@@ -123,14 +123,23 @@
 
             <div class="detail-content">
                 <div class="dashboard-grid">
-                    
                     <div class="dashboard-card" id="card-profile" role="button" tabindex="0">
                         <h3 class="card-title">Perfil</h3>
                         <div class="profile-display">
                             <div class="avatar-large border-red">JS</div> 
                             <span class="profile-name">João Silva</span>
-                            <span class="click-hint">Toque para editar</span>
+                            <!-- <span class="click-hint">Toque para editar</span> -->
                         </div>
+                    </div>
+
+                    <div class="dashboard-card" id="card-base-info" role="button" tabindex="0">
+                        <h3 class="card-title">Sinal</h3>
+                        <div class="stats-list">
+                            <div class="stat-row"><span>Canal</span><strong class="stat-val" id="display-info-canal">CH 4</strong></div>
+                            <div class="stat-row"><span>Mic</span><strong class="stat-val" id="display-info-mic">Sem fio 01</strong></div>
+                            <div class="stat-row"><span>Ganho</span><strong class="stat-val" id="display-val-gain">0</strong></div>
+                        </div>
+                        <!-- <span class="click-hint">Toque para editar</span> -->
                     </div>
 
                     <div class="dashboard-card" id="card-alerts" role="button" tabindex="0">
@@ -139,7 +148,7 @@
                             <span class="alert-tag tag-red">Grita Muito</span>
                             <span class="alert-tag tag-orange">Sibila forte</span>
                         </div>
-                        <span class="click-hint">Toque para editar</span>
+                        <!-- <span class="click-hint">Toque para editar</span> -->
                     </div>
 
                     <div class="dashboard-card" id="card-eq" role="button" tabindex="0">
@@ -149,7 +158,7 @@
                             <div class="stat-row"><span>Médio</span><strong class="stat-val" id="display-val-medio">-3</strong></div>
                             <div class="stat-row"><span>Grave</span><strong class="stat-val" id="display-val-grave">0</strong></div>
                         </div>
-                        <span class="click-hint">Toque para faders</span>
+                        <!-- <span class="click-hint">Toque para faders</span> -->
                     </div>
 
                     <div class="dashboard-card" id="card-comp" role="button" tabindex="0">
@@ -160,9 +169,16 @@
                             <div class="stat-row"><span>Atk</span><strong class="stat-val" id="display-val-atk">10ms</strong></div>
                             <div class="stat-row"><span>Rel</span><strong class="stat-val" id="display-val-rel">100ms</strong></div>
                         </div>
-                        <span class="click-hint">Toque para editar</span>
+                        <!-- <span class="click-hint">Toque para editar</span> -->
                     </div>
 
+                    <div class="dashboard-card pad-placeholder" id="card-quick-switch" role="button" tabindex="0">
+                        <h3 class="card-title" style="z-index: 2;">Fila</h3>
+                        <img src="./miko.png" alt="MIKO Logo" class="miko-logo-bg">
+                        <span class="click-hint" style="z-index: 2;">Em breve...</span>
+                    </div>
+
+                </div>
                 </div>
             </div>
         </div>
@@ -181,6 +197,17 @@
             </div>
             <div class="modal-content">
                 <div class="placeholder-box">Aqui você editará a imagem, nome e cor da tag do palestrante.</div>
+            </div>
+        </div>
+
+        <!--INFORMAÇÕES BASE-->
+        <div class="modal" id="modal-baseinfo">
+            <div class="modal-header">
+                <h3 class="env-title">Editar Informações base</h3>
+                <button class="icon-btn btn-close" data-close="modal-baseinfo"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-content">
+                <div class="placeholder-box">Aqui você editará o microfone, canal e ganho que o palestrante utilizará.</div>
             </div>
         </div>
 

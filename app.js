@@ -32,14 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
         profile: document.getElementById('card-profile'),
         alerts: document.getElementById('card-alerts'),
         eq: document.getElementById('card-eq'),
-        comp: document.getElementById('card-comp')
+        comp: document.getElementById('card-comp'),
+        baseinfo: document.getElementById('card-base-info'),
     };
     
     const editModals = {
         profile: document.getElementById('modal-profile'),
         alerts: document.getElementById('modal-alerts'),
         eq: document.getElementById('modal-eq'),
-        comp: document.getElementById('modal-comp')
+        comp: document.getElementById('modal-comp'),
+        baseinfo: document.getElementById('modal-baseinfo'),
     };
 
     // ==========================================
@@ -195,6 +197,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if(dashboardCards.comp) {
         dashboardCards.comp.addEventListener('click', () => openUIElement(editModals.comp));
+    }
+
+    if(dashboardCards.baseinfo) {
+        dashboardCards.baseinfo.addEventListener('click', () => openUIElement(editModals.baseinfo));
     }
 
     // ==========================================

@@ -410,6 +410,69 @@ body {
     color: var(--accent-orange);
 }
 
+/* --- Atualização do Grid para 2x3 --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr); /* Força a criação de 3 linhas com alturas iguais */
+    gap: 12px;
+    height: 100%; /* Agora ele vai esticar e preencher a tela inteira com perfeição */
+}
+
+/* --- Estilos do Novo Card de Informações Base --- */
+.info-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    align-self: flex-start; /* Ancora à esquerda */
+}
+
+.info-val {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--text-main);
+    align-self: flex-end; /* Ancora à direita */
+    background-color: var(--bg-elevated);
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-top: 2px;
+    border-left: 3px solid transparent;
+}
+
+/* Um destaque visual opcional para o microfone ou canal */
+.highlight-val {
+    border-left-color: var(--accent-orange);
+}
+
+/* --- Estilos do Card Placeholder (Logo MIKO) --- */
+.pad-placeholder {
+    position: relative;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.miko-logo-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Ajuste o tamanho da logo conforme precisar */
+    opacity: 0.5; /* Opacidade bem baixa pra ficar elegante no fundo */
+    pointer-events: none; /* Impede que a imagem roube o clique do card */
+    filter: brightness(0);
+}
+
 /* =========================================
    9. FADERS / SLIDERS VIRTUAIS (EQ)
    ========================================= */
@@ -556,7 +619,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px; /* Espaço um pouco menor para caber bem no celular */
-    height: 60%;
+    height: 90%;
 }
 
 /* --- Dashboard Card (Age como um botão) --- */
