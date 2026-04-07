@@ -121,12 +121,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 6. BOTÃO ADICIONAR NOVO PALESTRANTE
+    // 6. BOTÃO ADICIONAR (NOVO FORMULÁRIO)
     // ==========================================
+    const viewAddSpeaker = document.getElementById('view-add-speaker');
+    const btnCancelAdd = document.getElementById('btn-cancel-add');
+
     btnAdd.addEventListener('click', () => {
-        detailTitle.textContent = "Novo Palestrante";
-        viewSpeakerDetail.classList.add('active');
-        // Aqui você pode adicionar lógica para limpar a Dashboard para criar do zero
+        // Abre o formulário contínuo
+        viewAddSpeaker.classList.add('active');
+        document.body.classList.add('modal-open'); // Trava rolagem do fundo
+    });
+
+    // Cancelar/Fechar o formulário de adição
+    btnCancelAdd.addEventListener('click', () => {
+        viewAddSpeaker.classList.remove('active');
+        document.body.classList.remove('modal-open');
     });
 
     // ==========================================
@@ -234,5 +243,97 @@ document.addEventListener('DOMContentLoaded', () => {
             // Isso faz a Seção 8 entrar em ação, atualizando as cores, o número do modal e o número da dashboard lá atrás de uma vez só!
             slider.dispatchEvent(new Event('input'));
         });
+    });
+
+    // ==========================================
+    // 11. LÓGICA DOS KNOBS (COMPRESSOR)
+    // ==========================================
+    const knobs = document.querySelectorAll('.knob-container');
+
+    knobs.forEach(knob => {
+        const dial = knob.querySelector('.knob-dial');
+        const valueDisplay = knob.nextElementSibling; // O span .knob-value
+        const syncTargetId = knob.getAttribute('data-sync');
+        const syncTarget = syncTargetId ? document.getElementById(syncTargetId) : null;
+        
+        // Coleta as configurações do HTML
+        const min = parseFloat(knob.getAttribute('data-min'));
+        const max = parseFloat(knob.getAttribute('data-max'));
+        const step = parseFloat(knob.getAttribute('data-step')) || 1;
+        const unit = knob.getAttribute('data-unit') || '';
+        
+        let currentValue = parseFloat(knob.getAttribute('data-value'));
+        
+        // Função para atualizar o visual e os números
+        const updateKnob = (val) => {
+            // Trava nos limites
+            if (val < min) val = min;
+            if (val > max) val = max;
+            currentValue = val;
+            
+            // Converte o valor para graus (De -135º até +135º)
+            const percent = (currentValue - min) / (max - min);
+            const degrees = (percent * 270) - 135;
+            
+            dial.style.transform = `rotate(${degrees}deg)`;
+            
+            // Formatação bonita do texto
+            let displayStr = currentValue.toString();
+            // Adiciona o sinal de + no Gain/Thresh se for maior que zero, por padrão estético
+            if (currentValue > 0 && unit === 'dB') displayStr = '+' + displayStr;
+            
+            displayStr += unit;
+            
+            // Atualiza no Modal e na Dashboard
+            valueDisplay.textContent = displayStr;
+            if (syncTarget) syncTarget.textContent = displayStr;
+        };
+        
+        // Inicializa com o valor padrão do HTML
+        updateKnob(currentValue);
+        
+        // Variáveis de interação
+        let isDragging = false;
+        let startY = 0;
+        let startValue = 0;
+        
+        const startDrag = (e) => {
+            isDragging = true;
+            // Pega a posição Y do Mouse ou do Dedo
+            startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+            startValue = currentValue;
+        };
+        
+        const doDrag = (e) => {
+            if (!isDragging) return;
+            e.preventDefault(); // Evita qualquer scroll fantasma
+            
+            const currentY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+            const deltaY = startY - currentY; // Movimento para CIMA gera número positivo
+            
+            // Sensibilidade: 150 pixels de arrasto percorrem 100% do botão
+            const range = max - min;
+            const change = (deltaY / 150) * range; 
+            
+            // Aplica o "Step" (ex: pular de 0.5 em 0.5)
+            let newVal = startValue + change;
+            newVal = Math.round(newVal / step) * step;
+            
+            updateKnob(newVal);
+        };
+        
+        const stopDrag = () => {
+            isDragging = false;
+        };
+        
+        // Eventos para Desktop (Mouse)
+        knob.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', doDrag);
+        window.addEventListener('mouseup', stopDrag);
+        
+        // Eventos para Mobile (Toque)
+        knob.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', doDrag, { passive: false });
+        window.addEventListener('touchend', stopDrag);
     });
 });

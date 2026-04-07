@@ -183,6 +183,121 @@
             </div>
         </div>
 
+        <div class="detail-view" id="view-add-speaker">
+            <header class="detail-header">
+                <button class="icon-btn" id="btn-cancel-add"><i class="fas fa-times"></i></button>
+                <h1 class="env-title">Novo Palestrante</h1>
+                <button class="btn-save-primary">Salvar</button>
+            </header>
+
+            <div class="detail-content form-content">
+                
+                <div class="form-section">
+                    <h3 class="section-title">Perfil</h3>
+                    
+                    <div class="photo-upload-area">
+                        <div class="avatar-large" style="background-color: var(--bg-dark); border-color: #444;">
+                            <i class="fas fa-camera" style="font-size: 20px; color: var(--text-muted);"></i>
+                        </div>
+                        <span class="click-hint">Adicionar Foto</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="miko-label">Nome do Palestrante <span style="color: var(--tag-red);">*</span></label>
+                        <input type="text" class="miko-input" placeholder="Ex: Pr. João Silva" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="miko-label">Cor de Identificação</label>
+                        <div class="color-picker">
+                            <div class="color-swatch tag-red active"></div>
+                            <div class="color-swatch tag-orange"></div>
+                            <div class="color-swatch tag-green"></div>
+                            <div class="color-swatch" style="border: 3px solid #3498DB;"></div> <div class="color-swatch" style="border: 3px solid #9B59B6;"></div> </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Sinal Base</h3>
+                    
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="miko-label">Canal</label>
+                            <input type="text" class="miko-input" placeholder="Ex: CH 04">
+                        </div>
+                        <div class="input-group">
+                            <label class="miko-label">Ganho (dB)</label>
+                            <input type="number" class="miko-input" placeholder="+0">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="miko-label">Microfone</label>
+                        <select class="miko-select">
+                            <option value="" disabled selected>Selecione o Mic...</option>
+                            <option value="semfio1">Sem Fio 1</option>
+                            <option value="semfio2">Sem Fio 2</option>
+                            <option value="pulpito">Púlpito</option>
+                            <option value="headset">Headset Pastor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Atenção (Alertas)</h3>
+                    
+                    <div class="add-tag-group">
+                        <input type="text" class="miko-input" placeholder="Ex: Grita muito, Sibila forte...">
+                        <button class="btn-add-tag-inline"><i class="fas fa-plus"></i></button>
+                    </div>
+                    
+                    <div class="tags-preview inline-preview">
+                        <span class="alert-tag tag-red">Grita Muito <i class="fas fa-times delete-tag"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Equalizador (Pré-ajuste)</h3>
+                    <p style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">Defina o EQ inicial para este palestrante.</p>
+                    
+                    <div class="eq-board">
+                        <div class="fader-group">
+                            <span class="fader-label">Agudos</span>
+                            <button class="icon-btn fader-btn" data-action="plus"><i class="fas fa-plus"></i></button>
+                            <div class="fader-wrapper">
+                                <input type="range" class="center-slider" min="-12" max="12" value="0" step="1">
+                            </div>
+                            <button class="icon-btn fader-btn" data-action="minus"><i class="fas fa-minus"></i></button>
+                            <span class="fader-value">0</span>
+                        </div>
+
+                        <div class="fader-group">
+                            <span class="fader-label">Médios</span>
+                            <button class="icon-btn fader-btn" data-action="plus"><i class="fas fa-plus"></i></button>
+                            <div class="fader-wrapper">
+                                <input type="range" class="center-slider" min="-12" max="12" value="0" step="1">
+                            </div>
+                            <button class="icon-btn fader-btn" data-action="minus"><i class="fas fa-minus"></i></button>
+                            <span class="fader-value">0</span>
+                        </div>
+
+                        <div class="fader-group">
+                            <span class="fader-label">Graves</span>
+                            <button class="icon-btn fader-btn" data-action="plus"><i class="fas fa-plus"></i></button>
+                            <div class="fader-wrapper">
+                                <input type="range" class="center-slider" min="-12" max="12" value="0" step="1">
+                            </div>
+                            <button class="icon-btn fader-btn" data-action="minus"><i class="fas fa-minus"></i></button>
+                            <span class="fader-value">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    
+                </div>
+            </div>
+        </div>
+
         <!-- ===================== -->
         <!-- MODAIS DO PALESTRANTE -->
         <!-- ===================== -->
@@ -274,8 +389,52 @@
                 <h3 class="env-title">Compressor</h3>
                 <button class="icon-btn btn-close" data-close="modal-comp"><i class="fas fa-times"></i></button>
             </div>
-            <div class="modal-content">
-                <div class="placeholder-box">Aqui você configurará os parâmetros (Attack, Release, Threshold e Ratio).</div>
+            <div class="modal-content eq-modal-content">
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 24px;">Toque e arraste para cima/baixo.</p>
+                
+                <div class="knob-board">
+                    
+                    <div class="knob-group">
+                        <span class="knob-label">Thresh</span>
+                        <div class="knob-container" data-min="-60" data-max="0" data-step="1" data-value="-18" data-unit="dB" data-sync="display-val-thresh">
+                            <div class="knob-dial">
+                                <div class="knob-pointer"></div>
+                            </div>
+                        </div>
+                        <span class="knob-value">-18dB</span>
+                    </div>
+
+                    <div class="knob-group">
+                        <span class="knob-label">Ratio</span>
+                        <div class="knob-container" data-min="1" data-max="20" data-step="0.5" data-value="3" data-unit=":1" data-sync="display-val-ratio">
+                            <div class="knob-dial">
+                                <div class="knob-pointer"></div>
+                            </div>
+                        </div>
+                        <span class="knob-value">3:1</span>
+                    </div>
+
+                    <div class="knob-group">
+                        <span class="knob-label">Attack</span>
+                        <div class="knob-container" data-min="1" data-max="100" data-step="1" data-value="10" data-unit="ms" data-sync="display-val-atk">
+                            <div class="knob-dial">
+                                <div class="knob-pointer"></div>
+                            </div>
+                        </div>
+                        <span class="knob-value">10ms</span>
+                    </div>
+
+                    <div class="knob-group">
+                        <span class="knob-label">Release</span>
+                        <div class="knob-container" data-min="10" data-max="1000" data-step="10" data-value="100" data-unit="ms" data-sync="display-val-rel">
+                            <div class="knob-dial">
+                                <div class="knob-pointer"></div>
+                            </div>
+                        </div>
+                        <span class="knob-value">100ms</span>
+                    </div>
+
+                </div>
             </div>
         </div>
         <!--======================-->
